@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:/Users/Dreft/OneDrive/Escritorio/Proyecto de Omar/env/Scripts/python.exe",
+    "terminal.integrated.shellArgs.linux": ["-l"],
+    "terminal.integrated.shellArgs.osx": ["-l"],
+    "terminal.integrated.shellArgs.windows": [],
+    "python.terminal.activateEnvironment": true
+}

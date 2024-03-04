@@ -1,0 +1,4 @@
+wmig
+asig
+manage
+Configuracion de apuntar al setting.local

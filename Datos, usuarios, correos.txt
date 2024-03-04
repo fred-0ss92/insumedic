@@ -1,0 +1,13 @@
+Usuario Admin = {
+
+	username: 'InsuOmar',
+	email: 'insumedic.morelia01@gmail.com',
+	contraseña: 'Insumo2023'
+}
+
+
+Email = {
+	email: 'insumedic.morelia01@gmail.com',
+	contraseña: 'Toxinaorm1',
+}
+

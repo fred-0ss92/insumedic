@@ -1,0 +1,27 @@
+Para diseñar un modelo entidad-relación para un negocio de ventas de productos de belleza que involucre compras, ventas, vendedores, compradores e inventario, incluiría las siguientes entidades y relaciones:
+
+Entidades Principales:
+
+Producto: Representa los productos de belleza. Atributos: ID_Producto, Nombre, Descripción, Precio.
+Vendedor: Información de los vendedores. Atributos: ID_Vendedor, Nombre, Contacto.
+Comprador: Datos de los clientes. Atributos: ID_Comprador, Nombre, Contacto.
+Compra: Detalles de las compras realizadas por los compradores. Atributos: ID_Compra, Fecha, ID_Comprador, Total.
+Venta: Detalles de las ventas realizadas. Atributos: ID_Venta, Fecha, ID_Vendedor, Total.
+Entidades de Relación:
+
+Detalle de Compra: Relaciona Compra con Producto. Atributos: ID_Compra, ID_Producto, Cantidad, Precio.
+Detalle de Venta: Relaciona Venta con Producto. Atributos: ID_Venta, ID_Producto, Cantidad, Precio.
+Inventario: Control de stock de productos. Atributos: ID_Producto, Cantidad_Disponible.
+Relaciones:
+
+Compra-Comprador: Una relación uno a muchos, donde un comprador puede realizar múltiples compras.
+Venta-Vendedor: Una relación uno a muchos, donde un vendedor puede realizar múltiples ventas.
+Detalle de Compra-Compra: Relación uno a muchos, donde una compra puede incluir varios productos.
+Detalle de Venta-Venta: Relación uno a muchos, donde una venta puede incluir varios productos.
+Producto-Inventario: Relación uno a uno, donde cada producto tiene una entrada en el inventario.
+Producto-Detalle de Compra/Venta: Relación muchos a muchos, donde un producto puede estar en varias compras/ventas y una compra/venta puede incluir varios productos.
+Consideraciones Adicionales:
+
+Gestión de Proveedores: Si es relevante, podrías incluir entidades para manejar proveedores de los productos.
+Gestión de Pagos y Facturación: Para manejar los aspectos financieros de las transacciones.
+Promociones y Descuentos: Si el negocio ofrece promociones especiales o descuentos.
