@@ -11,3 +11,10 @@ Email = {
 	contraseña: 'Toxinaorm1',
 }
 
+
+Usuario Estandard = {
+
+	username: 'InsuArmando',
+	email: 'legion@hotmmail.com',
+	contraseña: 'Armmedic02'
+}

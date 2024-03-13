@@ -2,6 +2,13 @@ from django.db import models
 from django.forms import model_to_dict
 from appWeb.settings.local import STATIC_URL, MEDIA_URL
 from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
+from APP.user.models import User
+
+ESTADO_DEUDA_CHOICES = [
+        ('DEUDA', 'Deuda'),
+        ('SIN DEUDA', 'Sin Deuda'),
+    ]
 
 class Marca(models.Model):
     marca = models.CharField(max_length = 45, verbose_name = "Marca", null = True)
@@ -68,3 +75,25 @@ class Productos(models.Model):
         verbose_name_plural = 'Productos'
         ordering = ['id']
 
+class Clientes(models.Model):
+    nombre = models.CharField(verbose_name = 'Clientes', max_length=50, blank = False, null = False)
+    apellidos = models.CharField(max_length=150, verbose_name='Apellidos')
+    cel = models.CharField(verbose_name = "Celular", max_length=50)
+    mail = models.EmailField()
+    direc = models.CharField(verbose_name = "Dirección", max_length=80, blank=True, null=True)
+    tel_empresa = models.CharField(verbose_name = "Telefono empresa", max_length=50)
+    nombre_empresa = models.CharField(verbose_name = 'Empresa', max_length=50, null = True, blank = True)
+    vendedor = models.ForeignKey(User, verbose_name="Vendedor", on_delete=models.CASCADE)
+    estado_deuda = models.CharField(verbose_name = "Estado",max_length=15, choices=ESTADO_DEUDA_CHOICES, default='SIN DEUDA')
+
+    def __str__(self):
+        return f'{self.nombre}: \n Celular: {self.cel} \n Estado: {self.estado_deuda}'
+    
+    class Meta:
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+        ordering = ['id']
+    
+    def toJSON(self):
+        items = model_to_dict(self)
+        return items

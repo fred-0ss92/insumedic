@@ -51,7 +51,10 @@ LOCAL_APPS = ['APP.HomePage',
               ]
 
 #apps o apis descargados
-THIRD_APPS = []
+THIRD_APPS = [
+    'phonenumber_field',
+]
+
 
 
 #apps conjuntas

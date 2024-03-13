@@ -21,17 +21,17 @@
     <link rel="stylesheet" href="{% static 'bootstrap-5.2.2-dist/css/bootstrap.min.css' %}"/>
     <!-- Custom styles for this template-->
     <link href="{% static 'css_dash/sb-admin-2.min.css' %}" rel="stylesheet">
+    <!--Iconos-->
+    <link href="{% static 'bootstrap-icons-1.11.3/font/bootstrap-icons.css' %}" rel="stylesheet">
     <!--query-->
     <script src="{% static 'lib/plugins/jquery/jquery.min.js' %}"></script>
     <!--query Confirm-->
     <link rel="stylesheet" href="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}">
     <script src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script>
-    <!-- Sweetalert2 -->
-    <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
     <!-- Functions -->
     <script src="{% static 'js/functions.js' %}"></script>
     <!-- Sweetalert2 -->
-    <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script> 
+ 
     {% block head %}
     {% endblock %}
 </head>
@@ -80,8 +80,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Control de Clientes</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="bi bi-person-fill-check"></i>    Clientes Personales</a>
-                        <a class="collapse-item" href="cards.html"><i class="bi bi-person-lines-fill"></i>  Clientes totales</a>
+                        <a class="collapse-item" href="{% url 'lst03_personal_cliente' %}"><i class="bi bi-person-fill-check"></i>    Clientes Personales</a>
+                        {% if request.user.is_superuser %}
+                        <a class="collapse-item" href="{% url 'lst02_cliente' %}"><i class="bi bi-person-lines-fill"></i>  Clientes totales</a>
+                        {% endif %}
                     </div>
                 </div>
             </li>
@@ -255,8 +257,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -266,8 +267,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -371,10 +371,11 @@
             </div>
         </div>
     </div>
-
+    <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js_dash/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'js/functions.js' %}"></script>
 </body>
 </html>

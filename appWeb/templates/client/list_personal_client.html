@@ -1,0 +1,96 @@
+{% extends 'list.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'app_static/client/list_personal.js' %}"></script>
+    
+{% endblock %}
+
+{% block columns %}
+    <div class="row">
+        <div class = "col-lg-6 mb-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">¡Bienvenido {{ request.user.first_name}}
+                         {{ request.user.last_name }}!
+                    </h6>
+                </div>
+                <div class="card-body">
+
+                    La interfaz Lista de Clientes facilita la gestión eficaz de clientes,
+                     permitiendo crear, editar y eliminar registros de manera intuitiva y segura. 
+                     Con herramientas de búsqueda y
+                     filtrado avanzadas, optimiza el manejo de la información de clientes
+                </div>
+            </div>
+        </div>
+                                <!-- Earnings (Annual) Card Example -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-success shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                        Ultimo cliente registrado</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Nom: {{ last_client.nombre }}
+                                                         {{ last_client.apellidos }} 
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">cel: {{ last_client.cel }}
+
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">direc: {{ last_client.direc }}
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="bi bi-person-vcard-fill fa-3x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <!-- Tasks Card Example -->
+                                <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="card border-left-info shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">CLIENTE CON MAS COMPRA
+                                                    </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Cliente mas compras
+
+                                                    </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">"NUM"/20</div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="progress progress-sm mr-2">
+                                                                <div class="progress-bar bg-info" role="progressbar"
+                                                                    style="width: 30%" aria-valuenow="50" aria-valuemin="0"
+                                                                    aria-valuemax="100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <i class="bi bi-bag-heart fa-3x text-gray-300"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    </div>
+    <tr>
+        <th scope="col" >FC</th>
+        <th scope="col" >Nombre</th>
+        <th scope="col" >Celular</th>
+        <th scope="col" >Email</th>
+        <!--<th scope="col" style="width: 30%;">Descripción</th>-->       
+        <th scope="col">Dirección</th>
+        <th scope="col">Telefono de la empresa</th>
+        <th scope="col">Estado de Adeudos</th>
+        <th scope="col">Opciones</th>
+    </tr>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "body.html" %}
+{% load static %}
+{% block head %}
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{% static 'fonts/boxicons.css' %}" />
+
+{% endblock head %}
+<div class="content-wrapper">
+    <!-- Content -->
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>{{ title }}</h4>
+
+      <!-- Basic Layout -->
+      <div class="row">
+        <div class="col-xl">
+        <div class="col-xl">
+          <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Formulario de clientes</h5>
+              <small class="text-muted float-end">Datos individuales</small>
+            </div>
+            <div class="card-body">
+            <form method="post" action="#" >
+                {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                <!--Inputo nombre -->
+                <div class="mb-3">
+                  <label class="form-label" for="basic-icon-default-fullname">Nombre</label>
+                  <div class="input-group input-group-merge">
+                    <span id="basic-icon-default-fullname2" class="input-group-text"
+                      ><i class="bx bx-user"></i
+                    ></span>
+                        {{ form.nombre }}
+                  </div>
+                </div>
+                <!--Inputo apellido -->
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-fullname2">Apellidos</label>
+                    <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-lastname2" class="input-group-text"
+                        ><i class="bi bi-person-vcard"></i
+                      ></span>
+                          {{ form.apellidos }}
+                    </div>
+                  </div>
+                <!--input celular personal-->
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-phone">Celular</label>
+                    <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-phone2" class="input-group-text"
+                        ><i class="bi bi-phone"></i
+                      ></span>
+                        {{ form.cel }}
+                    </div>
+                <!--Input Email-->
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-email">Email</label>
+                    <div class="input-group input-group-merge">
+                      <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                        {{ form.mail }}
+                      <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+                    </div>
+                    <div class="form-text">Cualquier compañia de correspondencia.
+                    </div>
+                  </div>
+                <!--Input Direccion -->
+                <div class="mb-3">
+                  <label class="form-label" for="basic-icon-default-company">Dirección</label>
+                  <div class="input-group input-group-merge">
+                    <span id="basic-icon-default-company2" class="input-group-text"
+                      ><i class="bi bi-geo-alt"></i
+                    ></span>
+                        {{ form.direc }}
+                  </div>
+                </div>
+                <!--Input Compañia -->
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-company">Compañia</label>
+                    <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-company2" class="input-group-text"
+                        ><i class="bx bx-buildings"></i
+                      ></span>
+                            {{ form.nombre_empresa }}
+                    </div>
+                </div>
+                <!--Input tel_Compañia -->
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-company">Telefono de Compañia</label>
+                    <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-company2" class="input-group-text"
+                        ><i class="bx bx-phone"></i
+                      ></span>
+                            {{ form.tel_empresa }}
+                    </div>
+                  </div>
+                <!--Input deuda -->
+                <div class="mb-3">
+                    <label class="form-label" for="basic-icon-default-company">Telefono de Compañia</label>
+                    <div class="input-group input-group-merge">
+                      <span id="basic-icon-default-company2" class="input-group-text"
+                        ><i class="bi bi-credit-card"></i
+                      ></span>
+                            {{ form.estado_deuda }}
+                    </div>
+                  </div>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                <a href="{{ url_list }}" class="btn btn-danger btn-flat">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock%}
+{% block javascript %}
+<script>
+    {% if form.errors %}
+        var errors = "";
+    {% for field in form %}
+    {% for error in field.errors %}
+        errors += '{{ error }}\n';
+    {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        errors += '{{ error }}\n';
+    {% endfor %}
+        Swal.fire({
+        title: 'Error!',
+        text: errors,
+        icon: 'error'
+        });
+    {% endif %}
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        var parameters = $(this).serializeArray();
+        console.log(parameters)
+        $.ajax({
+            url: window.location.pathname,
+            type: 'POST',
+            data: parameters,
+            dataType: 'json'
+        }).done(function (data) {
+            if(!data.hasOwnProperty('error')) {
+                window.location.href= '{{ url_list }}'
+                return false;                          
+            }
+            message_error(data.error);                                
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            alert(textStatus + ': ' + errorThrown);
+        }).always(function(data) {
+
+        });
+    });
+</script>
+{% endblock javascript %}
